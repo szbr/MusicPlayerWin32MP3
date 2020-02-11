@@ -1,0 +1,66 @@
+#pragma once
+
+#define STRINGIZE_DETAIL( x ) #x
+#define STRINGIZE( x ) STRINGIZE_DETAIL( x )
+
+#define FATALERRORMSG( msg ) { MessageBox( nullptr, msg L"\n(file: " __FILE__ L", function: " __FUNCTION__ L", line: "STRINGIZE( __LINE__ ) L")", L"FATAL", MB_OK | MB_ICONEXCLAMATION ); exit( -1 ); }
+#define FATALERROR { MessageBox( nullptr, L"Fatal error at:\n(file: " __FILE__ L", function: " __FUNCTION__ L", line: "STRINGIZE( __LINE__ ) L")", L"FATAL", MB_OK | MB_ICONEXCLAMATION ); exit( -1 ); }
+
+#define CALLCHECK MessageBox( nullptr, L"file: " __FILE__ L", function: " __FUNCTION__ L", line: "STRINGIZE( __LINE__ ), L"CALLCHECK", MB_ICONEXCLAMATION | MB_OK );
+
+#define HWNDCHECK( x ) if( !x ) FATALERRORMSG( "Failed handle: "#x )
+
+
+#define WINDOW_WIDTH 550
+#define WINDOW_HEIGHT 580
+
+#define SYSTRAY_MSG WM_USER + 1
+#define SYSTRAY_ID  1002
+
+
+enum EIDs
+{
+	ID_DIRSELECT = 100,
+	ID_SAVE,
+	ID_PLAY,
+	ID_PAUSE_RESUME,
+	ID_STOP,
+	ID_NEXT,
+	ID_PREVIOUS,
+	ID_STEPDOWN,
+	ID_STEPUP,
+	ID_RESTART,
+	ID_EXITFINISH,
+	ID_RND,
+	ID_AUTO,
+	ID_HOTKEYS,
+	ID_SEARCH,
+	ID_LIST,
+	ID_HK_NEXT,
+	ID_HK_PREV,
+	ID_HK_PAUSERESUME,
+	ID_HK_STOP,
+	ID_HK_STEPDOWN,
+	ID_HK_STEPUP,
+	ID_INFO,
+	ID_MINBTN,
+	ID_EXITBTN,
+	ID_STATUS,
+	ID_TIMER
+};
+
+enum ESystrayMenus
+{
+	SYSTRAY_MENU_RESTORE = 1003,
+	SYSTRAY_MENU_MINIMIZE,
+	SYSTRAY_MENU_PLAY,
+	SYSTRAY_MENU_PAUSERESUME,
+	SYSTRAY_MENU_STOP,
+	SYSTRAY_MENU_NEXT,
+	SYSTRAY_MENU_PREVIOUS,
+	SYSTRAY_MENU_STEPDOWN,
+	SYSTRAY_MENU_STEPUP,
+	SYSTRAY_MENU_RESTART,
+	SYSTRAY_MENU_ABOUT,
+	SYSTRAY_MENU_EXIT
+};
